@@ -15,13 +15,14 @@ if __name__ == "__main__":
     #Objects Node
     objects = server.get_objects_node()
 
-    #Aggiunta di oggetti e variabili all'Objects node
+    # Step 1 - Association of objects and variables to the server
+    # Objects and variables are created as nodes in the server's address space.
     macchinaL1 = objects.add_object(idx, "Linea1")
     varmL1 = macchinaL1.add_variable(idx, "varL1", 0)
-    #Impostare la variabile come modificabile dal client
+    # Set the variable as writable by the client
     varmL1.set_writable()    
 
-    #Print degli ids
+    # Step 2 - Processing
     print('-------------------------')
     print("Object node is ", objects)
     print("Linea1 ", macchinaL1)
@@ -34,12 +35,12 @@ if __name__ == "__main__":
     try:
         while True:
             time.sleep(1)
-            #Recupero del valore della variabile
+            # Read the value of the variable
             tempL1 = varmL1.get_value()
             
             tempL1 += 1
 
-            #Scrittura del valore della variabile
+            # Write the value of the variable
             varmL1.set_value(tempL1)
 
             print("Valore L1: ", tempL1)

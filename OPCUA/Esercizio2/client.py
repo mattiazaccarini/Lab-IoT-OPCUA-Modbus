@@ -6,34 +6,38 @@ if __name__ == "__main__":
     try:
         client.connect()
 
-        #Recupero del nodo root
+        # Retrieval of the root node and print
         root = client.get_root_node()
         print("Root node is: ", root)
 
         
         print("Children of root are: ", root.get_children())
 
-        #Un oggetto si può recuperare specificando il suo nome oppure il suo identificativo
         objects = root.get_child(["0:Objects"])
 
         print("Children of Objects are ", objects.get_children())
 
 
-        # Recupero degli elementi tramite la navigazione dell'Address Space
+        # Retrieval of the elements via navigation of the Address Space
         macchinaL1 = root.get_child(["0:Objects", "2:Linea1"])
         varmL1 = root.get_child(["0:Objects", "2:Linea1", "2:varL1"])
-        
-        #[2.4] - Recupero dell'oggetto "Linea2" e della sua variabile "varL2"
+       
+        # Retrieval of the object "Linea2" and its variable "varL2"
+        # ------------------------
 
-        #Print degli Ids
+        # Print of the retrieved elements
         print("Linea1: ", macchinaL1)
-        print("varL2:  ", varmL1)
-        #[Facoltativo] - Print degli id
+        print("varL1:  ", varmL1)
+        
+        # Print of the retrieved object "Linea2" and its variable "varL2"
+        print('-------------------------')
+        # ------------------------- 
+        
+        # Print of L1 variable value
+        print("L1 Updated Value: ", varmL1.get_value())
 
-        #Print del valore della variabile
-        print("Valore L1: ", varmL1.get_value())
-
-        #[2.5] - Print del valore della variabile
+        # Print of Linea2 variable value
+        # ---------------------------------------
 
     finally:
         client.disconnect()

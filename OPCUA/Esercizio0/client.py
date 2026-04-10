@@ -7,38 +7,40 @@ if __name__ == "__main__":
     try:
         client.connect()
 
-        # Fase 3 - Read
-        # IL Client naviga nel namespace, recupera il nodo Root all'interno del server, i suoi figli
-        # e all'interno del nodo Objects recupera Linea1 (che sarà associata alla macchina) e varL1 (che sarà la variabile della macchina)
-        # Recupero del nodo root
+        # Step 3 - Read
+        # The Client navigates within the namespace, retrieves the Root node 
+        # within the server, its children and within the Objects node 
+        # retrieves Linea1 (which will be associated with the machine) 
+        # and varL1 (which will be the machine's variable)
+       
+        # Retrieval of the root node
         root = client.get_root_node()
         print("Root node is: ", root)
 
         
-        print("Children of root are: ", root.get_children()) # Recupero dei figli del nodo root, ovvero Objects, Types e Views
+        print("Children of root are: ", root.get_children()) # Retrieval of the children of the root node, namely Objects, Types and Views
 
-        # Un oggetto si può recuperare specificando il suo nome oppure il suo identificativo
-        objects = root.get_child(["0:Objects"]) # Recupero dell'oggetto Objects
-                                                # 0: indica il namespace
+        # An object can be retrieved by specifying its name or its identifier
+        objects = root.get_child(["0:Objects"]) # Retrieval of the Objects object
+                                                # 0: indicates the namespace
         
-        print("Children of Objects are ", objects.get_children()) # Recupero dei figli dell'oggetto Objects
-                                                                  # I figlio sono Server e Linea1
+        print("Children of Objects are ", objects.get_children()) # Retrieval of the children of the Objects object
+                                                                  # The children are Server and Linea1
 
 
-        # Recupero degli elementi tramite la navigazione dell'Address Space
-        # E li memorizzo in variabili
-        macchinaL1 = root.get_child(["0:Objects", "2:Linea1"])          # Recupero dell'oggetto Linea1 di Objects 
-                                                                        # Linea1 si trova nel nemaspace 2
-        varmL1 = root.get_child(["0:Objects", "2:Linea1", "2:varL1"])   # Recupero della variabile varL1 di Linea1 di Objects
-                                                                        # varL1 si trova nel namespace 2 (stesso nemaspace di Linea1)
-        # Print degli Ids di Linea1 e varL1
+        # Retrieval of the elements through navigation of the Address Space
+        # And storing them in variables
+        macchinaL1 = root.get_child(["0:Objects", "2:Linea1"])          # Retrieval of the Linea1 object from Objects 
+                                                                        # Linea1 is in namespace 2
+        varmL1 = root.get_child(["0:Objects", "2:Linea1", "2:varL1"])   # Retrieval of the varL1 variable from Linea1 of Objects
+                                                                        # varL1 is in namespace 2 (same namespace as Linea1)
+        # Print of the nodes retrieved
         print("Linea1: ", macchinaL1)
         print("varL1:  ", varmL1)
         
-        # Print del valore della variabile
+        # Print of the value of varL1
         print(varmL1.get_value())
 
 
     finally:
-        # Disconessione del client
         client.disconnect()

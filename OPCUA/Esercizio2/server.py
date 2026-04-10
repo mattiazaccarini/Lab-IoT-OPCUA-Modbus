@@ -15,44 +15,50 @@ if __name__ == "__main__":
     #Objects Node
     objects = server.get_objects_node()
 
-    #Aggiunta di oggetti e variabili all'Objects node
+    # Objects and Variables setup
     macchinaL1 = objects.add_object(idx, "Linea1")
     varmL1 = macchinaL1.add_variable(idx, "varL1", 0)
-    #Impostare la variabile come modificabile dal client
+
     varmL1.set_writable()    
 
-
-    #[2.1] - Crea una nuovo oggeto dal nome "Linea2" 
+    # Create a new object and variable for Linea2 
+    # --------------------------------------
      
-    #[2.2] - Associagli una variabile del nome "varL2" inizializzata a 100
+    # Association of the new variable to the new object with a value of 100
+    # ---------------------------------------
 
-    #[2.3] - Imposta la nuova variabile come writable
+    # Set the variable to be writable
+    # ---------------------------------------
 
-    #Print degli ids
+    # Print of the objects and variables for Linea1
     print('-------------------------')
     print("Object node is ", objects)
     print("Linea1 ", macchinaL1)
     print("varL1  ", varmL1)
-    #[Facoltativo] - Effettua il print degli ids dei nuovi elementi
+    # Print of the new object and variable for Linea2
     print('-------------------------')
-    
+    # ---------------------------------------
 
     server.start()
 
     try:
         while True:
             time.sleep(1)
-            #Recupero del valore della variabile
+            # Retrieval of the value of the variable and increment of 1
             tempL1 = varmL1.get_value()
             
             tempL1 += 1
 
-            #Scrittura del valore della variabile
+            # Update of the variable with the new value
             varmL1.set_value(tempL1)
 
-            print("Valore L1: ", tempL1)
+            print("L1 updated value: ", tempL1)
 
-            #[2.6] - Decremento del valore della variabile di 1
+            # Decrement of the value of varL2 by 1
+            # ---------------------------------------
+
+            # Update of varL2 with the new value
+            # ---------------------------------------
 
 
 

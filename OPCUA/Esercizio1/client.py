@@ -6,33 +6,35 @@ if __name__ == "__main__":
     try:
         client.connect()
 
-        #Recupero del nodo root
+        # Read the Root node and print its children
         root = client.get_root_node()
         print("Root node is: ", root)
 
         
         print("Children of root are: ", root.get_children())
 
-        #Un oggetto si può recuperare specificando il suo nome oppure il suo identificativo
+        # Read the Objects node and print its children
         objects = root.get_child(["0:Objects"])
 
         print("Children of Objects are ", objects.get_children())
 
 
-        # Recupero degli elementi tramite la navigazione dell'Address Space
+        # Read the variable node and print its value through its path 
+        # in the address space
         macchinaL1 = root.get_child(["0:Objects", "2:Linea1"])
         varmL1 = root.get_child(["0:Objects", "2:Linea1", "2:varL1"])
         
-        #Print degli Ids
         print("Linea1: ", macchinaL1)
         print("varL1: ", varmL1)
         
-        #Print del valore della variabile
-        print("Valore letto prima della scrittura", varmL1.get_value())
+        # Read the value of the variable before writing
+        print("Value before writing: ", varmL1.get_value())
 
-        #[1.1] - Imposta il valore della variabile lato client
+        # Write a new value to the variable
+        # -----------------------------
 
-        #[1.2] - Print del valore della variabile
+        # Print the value of the variable after writing
+        # -----------------------------
 
 
     finally:

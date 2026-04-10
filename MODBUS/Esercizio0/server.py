@@ -9,10 +9,12 @@ def run_async_server():
     URL = 'localhost'
     address_ip = "127.0.0.1"
 
-    # Numero di registri
+    # Registers configuration
     nreg = 200
 
-    # Inizializzazione del datastore del server che corrisponde ai registri (rispettivamente: discrete input, coils, holding register, input register) del server
+    # Datastore initialization of the server corresponding to the server 
+    # registers (respectively: discrete input, coils, holding register, 
+    # input register)
     store = ModbusSlaveContext(
         di=ModbusSequentialDataBlock(0, [15]*nreg),
         co=ModbusSequentialDataBlock(0, [16]*nreg),
@@ -20,7 +22,7 @@ def run_async_server():
         ir=ModbusSequentialDataBlock(0, [18]*nreg))
     context = ModbusServerContext(slaves=store, single=True)
 
-    # Inizializzazione delle informazioni del Server
+    # Server identity configuration
     identity = ModbusDeviceIdentification()
     identity.VendorName = 'TestLab-IoT'
     identity.ProductCode = 'TestLab-IoT'

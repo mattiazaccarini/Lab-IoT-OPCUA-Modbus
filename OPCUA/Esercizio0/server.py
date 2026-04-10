@@ -5,30 +5,34 @@ from opcua import ua, Server
 if __name__ == "__main__":
 
     # Server setup
-    # Specificando l'indirizzo del server e la porta in ascolto
     server = Server()
     server.set_endpoint("opc.tcp://localhost:4840")
 
     # Namespace Setup
-    uri = "OPCUA_SERVER" # Definizone del namespace
-    idx = server.register_namespace(uri) # Si registra il server con il namespace specificato
-
+    uri = "OPCUA_SERVER" # Namespace definition
+    # Namespace registration, returns the index 
+    # of the namespace, which is used to create nodes in that namespace
+    idx = server.register_namespace(uri) 
     # Objects Node
     objects = server.get_objects_node()
 
-    # Fase 1 - Associazione 
-    # Creazione di un oggetto e di una variabile all'interno dell'Objects node
+    # Step 1 - Association of objects and variables to the server
+    # Objects and variables are created as nodes in the 
+    # server's address space.
 
-    # Aggiunta di oggetti e variabili all'Objects node
-    macchinaL1 = objects.add_object(idx, "Linea1")      # Inizializzazione dell'oggetto Linea1 specificando namespace e nome
-    varmL1 = macchinaL1.add_variable(idx, "varL1", 0)   # Inizializzazione della variabile varL1 specificando namespace, nome e valore iniziale (0)
+    # Association of the object Linea1 to the server, 
+    # and association of the variable varL1 to the object Linea1
+    macchinaL1 = objects.add_object(idx, "Linea1")      # Linea1 initialization, specifying namespace and name
+    varmL1 = macchinaL1.add_variable(idx, "varL1", 0)   # Variable initialization, specifying namespace, name and initial value (0)
     
-    # Impostare la variabile come modificabile dal client
+    # Set the variable as writable by the client
     varmL1.set_writable()    
 
-    # Fase 2 - Lavorazione
-    # Si simula la lavorazione della macchina, incrementando la variabile di 1 ad ogni ciclo
-    # Print degli ids
+    # Step 2 - Processing
+
+    # Simulate the processing of the machine, 
+    # incrementing the variable by 1 on each cycle
+    # Print the IDs of the nodes created in the server
     print('-------------------------')
     print("Object node is ", objects)
     print("Linea1 ", macchinaL1)
@@ -39,19 +43,18 @@ if __name__ == "__main__":
     server.start()
 
     try:
-        # Ciclo for per incrementare il valore della variabile + 1 ad ogni ciclo e stamparlo
         while True:
-            #Recupero del valore della variabile
+            # Read the value of the variable
             tempL1 = varmL1.get_value()
             
             tempL1 += 1
 
-            #Scrittura del valore della variabile
+            # Write the value of the variable
             varmL1.set_value(tempL1)
 
-            print("Valore L1: ", tempL1)
+            print("L1 current value: ", tempL1)
             
-            # sleep per rallentare il ciclo
+            # sleep for 1 second before the next cycle
             time.sleep(1)
             
 

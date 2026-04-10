@@ -1,4 +1,4 @@
-# Laboratorio OPCUA-MODBUS 2023-2024
+# Laboratorio OPCUA-MODBUS 2025 - 2026
 
 ## Prerequisiti
 - Python > 3.10 
@@ -6,7 +6,7 @@
 
 ## Clonazione Repo
 ```
-git clone https://github.com/tabanellidev/Lab-IoT-OPCUA-Modbus.git
+git clone https://github.com/mattiazaccarini/Lab-IoT-OPCUA-Modbus.git
 ```
 
 ## Installazione
