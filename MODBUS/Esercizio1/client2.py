@@ -1,8 +1,4 @@
 from pymodbus.client import ModbusTcpClient as ModbusClient
-from pymodbus.constants import Endian
-from pymodbus.payload import BinaryPayloadBuilder
-from pymodbus.payload import BinaryPayloadDecoder
-import time
 
 # Setup Modus Client
 print('Start Modbus Client')

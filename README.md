@@ -83,3 +83,19 @@ Nel secondo terminale eseguire
 ```
 (env) PS ../Lab-IoT-OPCUA-Modbus/OPCUA/Esercizio0> py client.py
 ```
+
+### Gestione floating point esercizio 2 Modbus --> preparazione contenuto
+
+```
+payload = struct.pack('f', value) --> creo un float a 32 bit in Big Endian
+```
+```
+struct.pack('f', payload) --> divido il contenuto in 2 componenti da 16 bit, mantenendo lo stesso ordine
+```
+
+### Gestione floating point esercizio 2 Modbus --> ricostruzione valore partendo dai registri
+
+```
+payload = struct.pack('HH', rd_2[0], rd_2[1])
+value = struct.unpack('f', payload)[0]
+```

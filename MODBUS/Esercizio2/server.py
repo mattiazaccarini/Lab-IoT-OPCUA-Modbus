@@ -6,13 +6,14 @@ from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 def run_async_server():
     # server configuration
     port = 50002
-    URL = 'localhost'
     address_ip = "127.0.0.1"
 
-    # Numero di registri
+    # Registers number
     nreg = 200
 
-    # Inizializzazione del datastore del server che corrisponde ai registri (rispettivamente: discrete input, coils, holding register, input register) del server
+    # Datastore initialization of the server corresponding to the server
+    # registers (respectively: discrete input, coils, holding register,
+    # input register)
     store = ModbusSlaveContext(
         di=ModbusSequentialDataBlock(0, [15]*nreg),
         co=ModbusSequentialDataBlock(0, [16]*nreg),
@@ -20,7 +21,7 @@ def run_async_server():
         ir=ModbusSequentialDataBlock(0, [18]*nreg))
     context = ModbusServerContext(slaves=store, single=True)
 
-    # Inizializzazione delle informazioni del Server
+    # Information about the server identity
     identity = ModbusDeviceIdentification()
     identity.VendorName = 'TestLab-IoT'
     identity.ProductCode = 'TestLab-IoT'
@@ -31,8 +32,8 @@ def run_async_server():
 
 
     # Start TCP Server
-    print(f'Modbus server started on {URL} port {port}')
-    StartTcpServer(context=context, host=URL, identity=identity, address=(address_ip, port))
+    print(f'Modbus server started on {address_ip} port {port}')
+    StartTcpServer(context=context, identity=identity, address=(address_ip, port))
     
 
 if __name__ == "__main__":
