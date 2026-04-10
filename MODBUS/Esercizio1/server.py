@@ -6,7 +6,7 @@ from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 def run_async_server():
     # Server configuration
     port = 50001
-    URL = 'localhost'
+    #URL = 'localhost'
     address_ip = "127.0.0.1"
 
     # Registers number
@@ -31,8 +31,8 @@ def run_async_server():
 
 
     # Start TCP Server
-    print(f'Modbus server started on {URL} port {port}')
-    StartTcpServer(context=context, host=URL, identity=identity, address=(address_ip, port))
+    print(f'Modbus server started on {address_ip} port {port}')
+    StartTcpServer(context=context, identity=identity, address=(address_ip, port))
     
 
 if __name__ == "__main__":

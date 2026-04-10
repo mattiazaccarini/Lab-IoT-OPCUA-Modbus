@@ -8,21 +8,19 @@ import time
 print('Start Modbus Client')
 client = ModbusClient(host='127.0.0.1', port=50001)
 
-#[1.1] - Selezionare l'offset del registro da leggere 
-# Coordinate di lettura / scrittura
-# Indizio: lo stesso registro che il client1 ha scritto sul server
-# reg = 
+# Select the offset of the register to read/write
+# Hint: it is the same used in the server to initialize the data store
+# reg = -----
 
-# Identificativo del dispositivo modbus (server)
-# address =
+# ID of the modbus server to which the client will send the request
+# address = -----
 
 
-#[1.2] - Definire dati da leggere
-# Numero dati da leggere
-# numero_dati_da_leggere = 
+# Define the data to read from the server
+# value_count = -----
 
-#[1.3] - Leggere e stampare
-# Leggere e stampare
-# rd = 
+# Read and print the data
+#rd = ----- 
+#print('Read: ', -----)
 
 client.close()
